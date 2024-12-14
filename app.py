@@ -176,4 +176,4 @@ def submit_ratings_and_recommend(n_clicks, movie_elements):
 
 # Run the app
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
