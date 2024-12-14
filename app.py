@@ -64,10 +64,26 @@ def myIBCF(newuser):
 
 
 # Initialize Dash app
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, title='Movie Recommendation')
 
 # Layout
 app.layout = html.Div([
+    # set up title
+    html.Div(
+        "Movie Recommender",
+        style={
+            "textAlign": "center",
+            "fontSize": "48px",
+            "fontWeight": "bold",
+            "color": "#4CAF50",  # Stylish green color
+            "marginBottom": "20px",
+            "fontFamily": "'Helvetica', 'Arial', sans-serif",
+            "backgroundColor": "#f4f4f4",  # Light gray background
+            "padding": "20px",
+            "borderRadius": "10px",
+            "boxShadow": "0px 4px 8px rgba(0, 0, 0, 0.2)",  # Shadow for a floating effect
+        },
+    ),
     # Step 1: Movie Rating
     html.Div(id='step1', children=[
         html.Div(
@@ -109,7 +125,7 @@ app.layout = html.Div([
         ),
         html.P('Here are the movies we recommend based on your ratings. Enjoy!'),
         html.Div(id='recommended-movies', children=[])
-    ], style={'border': '2px solid #28A745', 'padding': '20px', 'border-radius': '5px', 'background-color': '#E9F9EE'})
+    ], style={'border': '2px solid #28A745', 'padding': '20px', 'border-radius': '5px', 'background-color': '#E9F9EE'}),
 ])
 
 
@@ -125,7 +141,7 @@ def display_movie_grid(n_clicks, current_children):
     for _, movie in selected_movies.iterrows():
         children.append(html.Div([
             html.Img(src=f"https://liangfgithub.github.io/MovieImages/{movie['MovieID']}.jpg",
-                     style={'width': '80%', 'height': '80%'}),
+                     style={'width': '50%', 'height': '50%'}),
             html.H5(movie['Title'].strip()),
             dcc.Slider(
                 id=f"m{movie['MovieID']}",
